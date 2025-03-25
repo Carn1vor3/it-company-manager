@@ -3,8 +3,8 @@
 {% block content %}
 	<h1>Positions</h1>
   {% for position in position_list %}
-  	<ul>
-      <li>{{ position.name }}</li>
+  	<ul class="list-group">
+      <li class="list-group-item">{{ position.name }}</li>
     </ul>
   {% endfor %}
   

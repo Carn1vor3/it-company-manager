@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Workers</h1>
+  {% for worker in worker_list %}
+  	<ul class="list-group">
+      <li class="list-group-item">Username: {{ worker.username }} Position: {{ worker.position }}</li>
+    </ul>
+  {% endfor %}
+  
+{% endblock %}
