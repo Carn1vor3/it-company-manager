@@ -22,7 +22,7 @@ class TaskType(models.Model):
 
 class Worker(AbstractUser):
     position = models.ForeignKey(
-        Position, on_delete=models.CASCADE, related_name="worker"
+        Position, on_delete=models.CASCADE, related_name="worker", null=True, blank=True
     )
 
 
@@ -43,3 +43,7 @@ class Task(models.Model):
     )
     assignees = models.ManyToManyField(Worker, related_name="assignee")
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=10, default="Low")
+
+    def __str__(self):
+        assignees_names = ", ".join(worker.username for worker in self.assignees.all())
+        return f"Task: ({self.name}), Description: ({self.description}), Deadline: ({self.deadline}), Completed: ({self.is_completed}), Task type: ({self.task_type.name}), Assignees: ({assignees_names}), Priority: ({self.priority})"
