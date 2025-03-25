@@ -1,7 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from manager.models import Worker, Position, TaskType
+from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView
 
 
@@ -28,3 +28,9 @@ class WorkerListView(ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "worker_list"
+
+
+class TaskListView(ListView):
+    model = Task
+    template_name = "manager/task_list.html"
+    context_object_name = "task_list"

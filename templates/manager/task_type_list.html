@@ -6,6 +6,8 @@
   	<ul class="list-group">
       <li class="list-group-item">{{ task_type.name }}</li>
     </ul>
+  {% empty %}
+    No tasks types
   {% endfor %}
-  
+
 {% endblock %}

@@ -6,6 +6,8 @@
   	<ul class="list-group">
       <li class="list-group-item">{{ position.name }}</li>
     </ul>
+  {% empty %}
+    No positions
   {% endfor %}
   
 {% endblock %}
