@@ -46,4 +46,10 @@ class Task(models.Model):
 
     def __str__(self):
         assignees_names = ", ".join(worker.username for worker in self.assignees.all())
-        return f"Task: ({self.name}), Description: ({self.description}), Deadline: ({self.deadline}), Completed: ({self.is_completed}), Task type: ({self.task_type.name}), Assignees: ({assignees_names}), Priority: ({self.priority})"
+        return (f"Task: ({self.name}),"
+                f" Description: ({self.description}),"
+                f" Deadline: ({self.deadline}),"
+                f" Completed: ({self.is_completed}),"
+                f" Task type: ({self.task_type.name}),"
+                f" Assignees: ({assignees_names}),"
+                f" Priority: ({self.priority})")
