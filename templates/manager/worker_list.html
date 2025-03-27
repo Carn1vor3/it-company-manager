@@ -4,7 +4,7 @@
 	<h1>Workers</h1>
   {% for worker in worker_list %}
   	<ul class="list-group">
-      <li class="list-group-item">Username: {{ worker.username }} Position: {{ worker.position }}</li>
+      <li class="list-group-item"><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a><br>Position: {{ worker.position }}</li>
     </ul>
   {% endfor %}
   

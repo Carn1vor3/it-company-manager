@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Worker {{ worker_detail.username }}</h1>
+  <ul>
+    <li>
+      {{ worker_detail.get_full_name }} 
+    </li>
+    <li>
+      Position: {{ worker_detail.position }}
+    </li>
+    <li>
+      Email: {{ worker_detail.email }}
+    </li>
+  </ul>
+{% endblock %}

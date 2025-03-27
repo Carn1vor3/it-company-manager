@@ -1,9 +1,8 @@
-from random import choices
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
-from it_company_manager.settings import AUTH_USER_MODEL
 
 
 class Position(models.Model):
@@ -24,6 +23,9 @@ class Worker(AbstractUser):
     position = models.ForeignKey(
         Position, on_delete=models.CASCADE, related_name="worker", null=True, blank=True
     )
+
+    def get_absolute_url(self):
+        return reverse("manager:worker-detail", kwargs={"pk": self.pk})
 
 
 class Task(models.Model):
