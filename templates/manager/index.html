@@ -1,9 +1,53 @@
 {% extends "base.html" %}
-{% block content %}
-  <h1>Home page</h1><br>
-	
-	<h2>More than {{ workers }} workers using our site</h2><br>
-  <h2>We have more than {{ positions }} different positions</h2><br>
-  <h2>Right now opened nearly {{ tasks }} tasks with {{ task_type }} different task types</h2>
 
+{% block content %}
+  <div class="container mt-4">
+    <h1 class="text-primary mb-4">Dashboard</h1>
+
+    <div class="row">
+      <div class="col-12 mb-3">
+        <div class="card border-primary shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Workers</h5>
+            <p class="card-text">
+              <strong>Total Workers:</strong> {{ workers }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card border-primary shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Positions</h5>
+            <p class="card-text">
+              <strong>Available Positions:</strong> {{ positions }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card border-primary shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Tasks</h5>
+            <p class="card-text">
+              <strong>Opened Tasks:</strong> {{ tasks }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card border-primary shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-primary">Task Types</h5>
+            <p class="card-text">
+              <strong>Different Task Types:</strong> {{ task_type }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
