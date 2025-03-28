@@ -5,17 +5,18 @@
   {% for task in task_list %}
   	<ul class="list-group">
       <li class="list-group-item">
-        Task: {{ task.name }}<br>
-        Description: {{ task.description }}<br>
-        Completed: {{ task.is_completed }}<br>
-        Priority: {{ task.priority }}<br>
-        Assigned:
-        {% for worker in task.assignees.all %}
-          {{ worker.username }}{% if not forloop.last %}, {% endif %}
-        {% empty %}
-          No assignees
-        {% endfor %}
-        Deadline: {{ task.deadline }}
+        <h3>
+          <a href="{% url 'manager:task-detail' pk=task.id %}">{{ task.name }}</a>
+        </h3><br>
+        
+        <h5>
+          {% if task.is_completed %}
+        	  Completed
+          {% else %}
+            Not completed
+          {% endif %} 
+        </h5>
+        
       </li>
     </ul>
   {% empty %}

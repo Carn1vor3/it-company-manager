@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Information about task {{ task_detail.name }}</h1><br>
+  <h4>
+    Short description: {{ task_detail.description }}
+  </h4>
+  <h4>
+    Priority: {{ task_detail.priority }}
+  </h4>
+  <h4>
+    Deadline: {{ task_detail.deadline }}
+  </h4>
+  <h4>
+    Type of the task: {{ task_detail.task_type }}
+  </h4>
+  <h4>
+    {% if task_detail.is_completed %}
+      Completed
+    {% else %}
+      Not completed
+    {% endif %}
+  </h4>
+  <h4>
+    Working on task: 
+    {% for assignee in task_detail.assignees.all %}
+      <a href="{{ assignee.get_absolute_url }}">{{ assignee.username }}</a>
+    {% endfor %}
+  </h4>
+{% endblock %}
