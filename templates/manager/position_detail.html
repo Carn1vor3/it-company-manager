@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Workers with {{ position_detail.name }} position</h1><br>
+  <h3>
+    {% if position_detail.worker.all %}
+      
+      {% for worker in position_detail.worker.all %}
+      {{ worker.get_full_name }}<br>
+      {% endfor %}
+    {% else %}
+      No workers with this position
+    {% endif %} 
+  </h3>
+{% endblock %}

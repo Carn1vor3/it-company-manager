@@ -6,9 +6,15 @@ from django.views.generic import ListView, DetailView
 
 
 def index(request: HttpRequest) -> HttpResponse:
-    workers = Worker.objects.all()
+    workers = Worker.objects.count()
+    positions = Position.objects.count()
+    tasks = Task.objects.count()
+    task_type = TaskType.objects.count()
     context = {
         "workers": workers,
+        "positions": positions,
+        "tasks": tasks,
+        "task_type": task_type,
     }
     return render(request, "manager/index.html", context=context)
 
@@ -16,6 +22,12 @@ class PositionListView(ListView):
     model = Position
     template_name = "manager/position_list.html"
     context_object_name = "position_list"
+
+
+class PositionDetailView(DetailView):
+    model = Position
+    template_name = "manager/position_detail.html"
+    context_object_name = "position_detail"
 
 
 class TaskTypeListView(ListView):

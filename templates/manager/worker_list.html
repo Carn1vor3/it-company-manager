@@ -6,6 +6,8 @@
   	<ul class="list-group">
       <li class="list-group-item"><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a><br>Position: {{ worker.position }}</li>
     </ul>
+  {% empty %}
+    No workers right now
   {% endfor %}
   
 {% endblock %}

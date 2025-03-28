@@ -4,7 +4,7 @@
 	<h1>Positions</h1>
   {% for position in position_list %}
   	<ul class="list-group">
-      <li class="list-group-item">{{ position.name }}</li>
+      <li class="list-group-item"><a href="{% url 'manager:position-detail' pk=position.id%}">{{ position.name }}</a></li>
     </ul>
   {% empty %}
     No positions

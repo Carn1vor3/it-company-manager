@@ -1,12 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Workers</h1>
-	{% for worker in workers.all %}
-		<ul>
-      <li>
-        <a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a>
-      </li>
-    </ul>
-	{% endfor %}
+  <h1>Home page</h1><br>
+	
+	<h2>More than {{ workers }} workers using our site</h2><br>
+  <h2>We have more than {{ positions }} different positions</h2><br>
+  <h2>Right now opened nearly {{ tasks }} tasks with {{ task_type }} different task types</h2>
 
 {% endblock %}
