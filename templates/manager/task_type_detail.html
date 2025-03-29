@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Additional info about {{ task_type_detail.name }} <a href="{% url 'manager:task-type-update' pk=task_type_detail.id%}" class="btn btn-primary">Update</a></h1>
+  <br>
+  <h2>Tasks with {{ task_type_detail.name }} type of task</h2>
+  <ul>
+    <li>
+      {% for task in task_type_detail.task.all %}
+      	{{ task.name }}
+      {% endfor %}
+      
+    </li>
+  </ul>
+{% endblock %}
