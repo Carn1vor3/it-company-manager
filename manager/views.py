@@ -79,3 +79,11 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "manager/task_detail.html"
     context_object_name = "task_detail"
+
+
+class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
+    template_name = "manager/task_create.html"
+    context_object_name = "task_create"
+    fields = "__all__"
+    success_url = "/manager/task/"

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Tasks</h1>
+	<h1>Tasks <a href="{% url 'manager:task-create' %}" class="btn btn-primary">Create new</a></h1>
   {% for task in task_list %}
   	<ul class="list-group">
       <li class="list-group-item">
