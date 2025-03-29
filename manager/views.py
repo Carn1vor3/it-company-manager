@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
+from manager.forms import WorkerCreationForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView
 
@@ -66,6 +67,14 @@ class WorkerDetailView(LoginRequiredMixin, DetailView):
     model = Worker
     template_name = "manager/worker_detail.html"
     context_object_name = "worker_detail"
+
+
+class WorkerCreateView(LoginRequiredMixin, CreateView):
+    model = Worker
+    template_name = "manager/worker_create.html"
+    context_object_name = "worker_create"
+    form_class = WorkerCreationForm
+    success_url = "/manager/worker/"
 
 
 class TaskListView(LoginRequiredMixin, ListView):
