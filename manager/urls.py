@@ -8,7 +8,6 @@ from manager.views import (
     TaskListView,
     WorkerDetailView,
     TaskDetailView,
-    logged_out
 )
 
 urlpatterns = [
@@ -21,7 +20,7 @@ urlpatterns = [
     path("worker/<int:pk>/detail/", WorkerDetailView.as_view(), name="worker-detail"),
     path("task/", TaskListView.as_view(), name="task-list"),
     path("task/<int:pk>/detail/", TaskDetailView.as_view(), name="task-detail"),
-    path('logged-out/', logged_out, name='logout'),
+
 ]
 
 

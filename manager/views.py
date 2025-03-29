@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
@@ -18,47 +19,47 @@ def index(request: HttpRequest) -> HttpResponse:
     }
     return render(request, "manager/index.html", context=context)
 
-class PositionListView(ListView):
+class PositionListView(LoginRequiredMixin, ListView):
     model = Position
     template_name = "manager/position_list.html"
     context_object_name = "position_list"
+    paginate_by = 5
 
 
-class PositionDetailView(DetailView):
+class PositionDetailView(LoginRequiredMixin, DetailView):
     model = Position
     template_name = "manager/position_detail.html"
     context_object_name = "position_detail"
 
 
-class TaskTypeListView(ListView):
+class TaskTypeListView(LoginRequiredMixin, ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     context_object_name = "task_type_list"
+    paginate_by = 5
 
 
-class WorkerListView(ListView):
+class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "worker_list"
+    paginate_by = 5
 
 
-class WorkerDetailView(DetailView):
+class WorkerDetailView(LoginRequiredMixin, DetailView):
     model = Worker
     template_name = "manager/worker_detail.html"
     context_object_name = "worker_detail"
 
 
-class TaskListView(ListView):
+class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = "manager/task_list.html"
     context_object_name = "task_list"
+    paginate_by = 5
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "manager/task_detail.html"
     context_object_name = "task_detail"
-
-
-def logged_out(request):
-    return render(request, "registration/logged_out.html")
