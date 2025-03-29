@@ -58,3 +58,7 @@ class TaskDetailView(DetailView):
     model = Task
     template_name = "manager/task_detail.html"
     context_object_name = "task_detail"
+
+
+def logged_out(request):
+    return render(request, "registration/logged_out.html")

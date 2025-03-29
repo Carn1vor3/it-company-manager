@@ -1,14 +1,21 @@
-{% extends "base.html" %}
-
-{% block sidebar %}
-  <div class="bg-dark p-4" style="width: 250px; position: fixed; top: 0; left: 0; height: 100vh;">
-    <h4 class="text-white mb-4">User: {{ user.get_username }}</h4>
-    <div class="d-flex flex-column">
-      <a href="{% url 'manager:home' %}" class="text-white text-decoration-none mb-2 p-2 border rounded-4 hover-bg-primary">Home</a>
-      <a href="{% url 'manager:position-list' %}" class="text-white text-decoration-none mb-2 p-2 border rounded-4 hover-bg-primary">Positions</a>
-      <a href="{% url 'manager:task-list' %}" class="text-white text-decoration-none mb-2 p-2 border rounded-4 hover-bg-primary">Tasks</a>
-      <a href="{% url 'manager:task-type-list' %}" class="text-white text-decoration-none mb-2 p-2 border rounded-4 hover-bg-primary">Task types</a>
-      <a href="{% url 'manager:worker-list' %}" class="text-white text-decoration-none mb-2 p-2 border rounded-4 hover-bg-primary">Workers</a>
+<div class="bg-dark p-4" style="width: 250px; position: fixed; top: 0; left: 0; height: 100vh;">
+  {% if user.is_authenticated %}
+    <div class="text-white fw-bold fs-5 mb-3">
+      User: <span class="font-monospace text-warning">{{ user.username }}</span>
     </div>
+    <form action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger w-100">Logout</button>
+    </form>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-primary w-100">Login</a>
+  {% endif %}
+
+  <div class="d-flex flex-column mt-4">
+    <a href="{% url 'manager:home' %}" class="btn btn-secondary mb-2 w-100 fw-bold">Home</a>
+    <a href="{% url 'manager:position-list' %}" class="btn btn-secondary mb-2 w-100 fw-bold">Positions</a>
+    <a href="{% url 'manager:task-list' %}" class="btn btn-secondary mb-2 w-100 fw-bold">Tasks</a>
+    <a href="{% url 'manager:task-type-list' %}" class="btn btn-secondary mb-2 w-100 fw-bold">Task types</a>
+    <a href="{% url 'manager:worker-list' %}" class="btn btn-secondary mb-2 w-100 fw-bold">Workers</a>
   </div>
-{% endblock %}
+</div>

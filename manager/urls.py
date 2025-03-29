@@ -8,10 +8,11 @@ from manager.views import (
     TaskListView,
     WorkerDetailView,
     TaskDetailView,
+    logged_out
 )
 
 urlpatterns = [
-    path("home/", index, name="home"),
+    path("", index, name="home"),
     path("position/", PositionListView.as_view(), name="position-list"),
     path("position/<int:pk>/detail/", PositionDetailView.as_view(), name="position-detail"),
 
@@ -20,6 +21,8 @@ urlpatterns = [
     path("worker/<int:pk>/detail/", WorkerDetailView.as_view(), name="worker-detail"),
     path("task/", TaskListView.as_view(), name="task-list"),
     path("task/<int:pk>/detail/", TaskDetailView.as_view(), name="task-detail"),
+    path('logged-out/', logged_out, name='logout'),
 ]
+
 
 app_name = "manager"
