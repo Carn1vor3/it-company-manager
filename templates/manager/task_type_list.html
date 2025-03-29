@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Types of tasks</h1>
+	<h1>Types of tasks <a href="{% url 'manager:task-type-create' %}" class="btn btn-primary">Create new</a></h1>
   {% for task_type in task_type_list %}
   	<ul class="list-group">
       <li class="list-group-item">{{ task_type.name }}</li>

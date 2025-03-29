@@ -1,3 +1,7 @@
 .idea/
 .venv
 /__pycache__/
+manager/templatetags/__pycache__/
+manager/migrations/__pycache__/
+it_company_manager/__pycache__/
+manager/__pycache__/

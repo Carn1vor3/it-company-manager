@@ -47,6 +47,14 @@ class TaskTypeListView(LoginRequiredMixin, ListView):
     paginate_by = 5
 
 
+class TaskTypeCreateView(LoginRequiredMixin, CreateView):
+    model = TaskType
+    template_name = "manager/task_type_create.html"
+    context_object_name = "task_type_create"
+    fields = "__all__"
+    success_url = "/manager/tasktype/"
+
+
 class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
