@@ -2,7 +2,7 @@
 
 {% block content %}
 	<h1>Positions <a href="{% url 'manager:position-create' %}" class="btn btn-primary">Create new</a></h1>
-  
+
   {% for position in position_list %}
   	<ul class="list-group">
       <li class="list-group-item"><a href="{% url 'manager:position-detail' pk=position.id%}">{{ position.name }}</a></li>
