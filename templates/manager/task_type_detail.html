@@ -4,6 +4,7 @@
 	<h1>
     Additional info about {{ task_type_detail.name }} 
     <a href="{% url 'manager:task-type-update' pk=task_type_detail.id%}" class="btn btn-primary">Update</a>
+    <a href="{% url 'manager:task-type-delete' pk=task_type_detail.id%}" class="btn btn-danger">Delete</a>
   </h1>
   <br>
   <h2>Tasks with {{ task_type_detail.name }} type of task</h2>

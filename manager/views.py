@@ -85,6 +85,13 @@ class TaskTypeUpdateView(LoginRequiredMixin, UpdateView):
     success_url = "/manager/tasktype/"
 
 
+class TaskTypeDeleteView(LoginRequiredMixin, DeleteView):
+    model = TaskType
+    template_name = "manager/task_type_confirmation_delete.html"
+    context_object_name = "task_type"
+    success_url = "/manager/tasktype/"
+
+
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = "manager/task_update.html"
