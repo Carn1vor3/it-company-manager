@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 from manager.forms import WorkerCreationForm
 from manager.models import Worker, Position, TaskType, Task
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -46,6 +46,13 @@ class PositionUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "manager/position_update.html"
     context_object_name = "position"
     fields = "__all__"
+    success_url = "/manager/position/"
+
+
+class PositionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Position
+    template_name = "manager/position_confirmation_delete.html"
+    context_object_name = "position"
     success_url = "/manager/position/"
 
 

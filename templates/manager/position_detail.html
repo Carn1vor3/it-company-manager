@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Workers with {{ position_detail.name }} position <a href="{% url 'manager:position-update' pk=position_detail.id%}" class="btn btn-primary">Update this position</a></h1><br>
+	<h1>Workers with {{ position_detail.name }} position 
+    <a href="{% url 'manager:position-update' pk=position_detail.id%}" class="btn btn-primary">Update</a>
+    <a href="{% url 'manager:position-delete' pk=position_detail.id%}" class="btn btn-danger">Delete</a>
+  </h1><br>
   
   <h3>
     {% if position_detail.worker.all %}
