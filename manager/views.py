@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from manager.forms import WorkerCreationForm
+from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -125,6 +125,14 @@ class WorkerDeleteView(LoginRequiredMixin, DeleteView):
     model = Worker
     template_name = "manager/worker_confirmation_delete.html"
     context_object_name = "worker"
+    success_url = "/manager/worker/"
+
+
+class WorkerPositionUpdateView(LoginRequiredMixin, UpdateView):
+    model = Worker
+    template_name = "manager/worker_position_update.html"
+    form_class = WorkerPositionUpdateForm
+    context_object_name = "worker_position_update"
     success_url = "/manager/worker/"
 
 
