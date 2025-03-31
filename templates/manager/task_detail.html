@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Information about task {{ task_detail.name }}</h1><br>
+	<h1>Information about task {{ task_detail.name }} <a href="{% url 'manager:task-update' pk=task_detail.id%}" class="btn btn-primary">Update</a></h1><br>
   <h4>
     Short description: {{ task_detail.description }}
   </h4>

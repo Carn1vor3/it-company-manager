@@ -77,6 +77,15 @@ class TaskTypeUpdateView(LoginRequiredMixin, UpdateView):
     fields = "__all__"
     success_url = "/manager/tasktype/"
 
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    model = Task
+    template_name = "manager/task_update.html"
+    context_object_name = "task"
+    fields = "__all__"
+    success_url = "/manager/task/"
+
+
 class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
