@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<h1>Delete worker {{ worker.get_full_name }}</h1>
+  <p>Are you sure you want to delete this worker?</p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete" class="btn btn-danger">
+     <a href="{% url 'manager:worker-detail' pk=worker.id%}" class="btn btn-primary">Cancel</a>
+  </form>
+ 
+{% endblock %}

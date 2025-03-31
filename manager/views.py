@@ -121,6 +121,13 @@ class WorkerCreateView(LoginRequiredMixin, CreateView):
     success_url = "/manager/worker/"
 
 
+class WorkerDeleteView(LoginRequiredMixin, DeleteView):
+    model = Worker
+    template_name = "manager/worker_confirmation_delete.html"
+    context_object_name = "worker"
+    success_url = "/manager/worker/"
+
+
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = "manager/task_list.html"
