@@ -147,3 +147,10 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     context_object_name = "task_create"
     fields = "__all__"
     success_url = "/manager/task/"
+
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
+    model = Task
+    template_name = "manager/task_confirmation_delete.html"
+    context_object_name = "task"
+    success_url = "/manager/task/"
