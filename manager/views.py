@@ -1,9 +1,10 @@
+from django.contrib.auth import get_user
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
 from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm, \
-    TaskTypeSearchForm, TaskSearchForm
+    TaskTypeSearchForm, TaskSearchForm, WorkerSearchForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -130,6 +131,22 @@ class WorkerListView(LoginRequiredMixin, ListView):
     template_name = "manager/worker_list.html"
     context_object_name = "worker_list"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list = ..., **kwargs):
+        context = super(WorkerListView, self).get_context_data(**kwargs)
+        username = self.request.GET.get("username", "")
+        context["search_form"] = WorkerSearchForm(
+            initial={"username": username},
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Worker.objects.all()
+        form = WorkerSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(username__icontains=form.cleaned_data["username"])
+        return queryset
 
 
 class WorkerDetailView(LoginRequiredMixin, DetailView):
