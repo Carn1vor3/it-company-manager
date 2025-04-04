@@ -1,7 +1,16 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
 	<h1>Tasks <a href="{% url 'manager:task-create' %}" class="btn btn-primary">Create new</a></h1>
+
+  <form action="" method="get" class="d-flex gap-2 mb-3">
+    {% csrf_token %}
+    {{ search_form|crispy }}
+    <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start;">🔎</button>
+  </form>
+
+
   {% for task in task_list %}
   	<ul class="list-group">
       <li class="list-group-item">
