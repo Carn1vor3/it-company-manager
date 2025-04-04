@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm
+from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm, TaskTypeSearchForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -77,6 +77,22 @@ class TaskTypeListView(LoginRequiredMixin, ListView):
     template_name = "manager/task_type_list.html"
     context_object_name = "task_type_list"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list = ..., **kwargs):
+        context = super(TaskTypeListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = TaskTypeSearchForm(
+            initial={"name": name},
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = TaskType.objects.all()
+        form = TaskTypeSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
 
 
 class TaskTypeCreateView(LoginRequiredMixin, CreateView):
