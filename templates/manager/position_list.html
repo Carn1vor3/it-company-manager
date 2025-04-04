@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% load crispy_forms_filters %}
 
 {% block content %}
 	<h1>Positions <a href="{% url 'manager:position-create' %}" class="btn btn-primary">Create new</a></h1>
+
+  <form action="" method="get" class="form-inline">
+    {% csrf_token %}
+    {{ search_form|crispy }}
+    <input type="submit" value="🔎">
+  </form><br>
 
   {% for position in position_list %}
   	<ul class="list-group">

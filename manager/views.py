@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm
+from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -25,6 +25,22 @@ class PositionListView(LoginRequiredMixin, ListView):
     template_name = "manager/position_list.html"
     context_object_name = "position_list"
     paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(PositionListView, self).get_context_data(**kwargs)
+        name = self.request.GET.get("name", "")
+        context["search_form"] = PositionSearchForm(
+            initial={"name": name},
+        )
+        return context
+
+    def get_queryset(self):
+        queryset = Position.objects.all()
+        form = PositionSearchForm(self.request.GET)
+
+        if form.is_valid():
+            return queryset.filter(name__icontains=form.cleaned_data["name"])
+        return queryset
 
 
 class PositionDetailView(LoginRequiredMixin, DetailView):
@@ -92,14 +108,6 @@ class TaskTypeDeleteView(LoginRequiredMixin, DeleteView):
     success_url = "/manager/tasktype/"
 
 
-class TaskUpdateView(LoginRequiredMixin, UpdateView):
-    model = Task
-    template_name = "manager/task_update.html"
-    context_object_name = "task"
-    fields = "__all__"
-    success_url = "/manager/task/"
-
-
 class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
@@ -151,14 +159,23 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
+    form_class = TaskForm
     template_name = "manager/task_create.html"
     context_object_name = "task_create"
-    fields = "__all__"
     success_url = "/manager/task/"
 
 
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = "manager/task_confirmation_delete.html"
+    context_object_name = "task"
+    success_url = "/manager/task/"
+
+
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
+    model = Task
+    form_class = TaskForm
+    template_name = "manager/task_update.html"
     context_object_name = "task"
     success_url = "/manager/task/"
