@@ -2,20 +2,37 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-	<h1>Workers <a href="{% url 'manager:worker-create' %}" class="btn btn-primary">Create new</a></h1>
+  <div class="container mt-4">
+    <h1 class="text-primary mb-4">
+      Workers
+      <a href="{% url 'manager:worker-create' %}" class="btn btn-success btn-sm ms-3">+ Create new</a>
+    </h1>
 
-  <form action="" method="get" class="d-flex gap-2 mb-3">
-    {% csrf_token %}
-    {{ search_form|crispy }}
-    <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start; margin-top: 5px">🔎</button>
-  </form>
+    <form action="" method="get" class="d-flex gap-2 mb-4">
+      {% csrf_token %}
+      {{ search_form|crispy }}
+      <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start; margin-top: 5px">🔍</button>
+    </form>
 
-  {% for worker in worker_list %}
-  	<ul class="list-group">
-      <li class="list-group-item"><a href="{{ worker.get_absolute_url }}">{{ worker.username }}</a><br>Position: {{ worker.position }}</li>
-    </ul>
-  {% empty %}
-    No workers right now
-  {% endfor %}
-  
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for worker in worker_list %}
+        <div class="col">
+          <div class="card h-100 border-info shadow-sm rounded-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{{ worker.get_absolute_url }}" class="text-decoration-none text-info">
+                  {{ worker.username }}
+                </a>
+              </h5>
+              <p class="card-text">
+                <strong>Position:</strong> {{ worker.position }}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="text-muted">No workers right now</div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

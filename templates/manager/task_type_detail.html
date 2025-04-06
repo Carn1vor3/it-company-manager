@@ -1,19 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>
-    Additional info about {{ task_type_detail.name }} 
-    <a href="{% url 'manager:task-type-update' pk=task_type_detail.id%}" class="btn btn-primary">Update</a>
-    <a href="{% url 'manager:task-type-delete' pk=task_type_detail.id%}" class="btn btn-danger">Delete</a>
-  </h1>
-  <br>
-  <h2>Tasks with {{ task_type_detail.name }} type of task</h2>
-  <ul>
-    <li>
+  <div class="container mt-4">
+    <h1 class="text-primary">
+      Additional Info About {{ task_type_detail.name }}
+      <a href="{% url 'manager:task-type-update' pk=task_type_detail.id %}" class="btn btn-warning btn-sm ms-3">Update</a>
+      <a href="{% url 'manager:task-type-delete' pk=task_type_detail.id %}" class="btn btn-danger btn-sm ms-3">Delete</a>
+    </h1>
+
+    <h2 class="mt-4">Tasks with "{{ task_type_detail.name }}" type of task:</h2>
+    <ul class="list-group mt-3">
       {% for task in task_type_detail.task.all %}
-      	{{ task.name }}
+        <li class="list-group-item">
+          <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-primary">
+            {{ task.name }}
+          </a>
+        </li>
+      {% empty %}
+        <li class="list-group-item text-muted">No tasks associated with this type yet.</li>
       {% endfor %}
-      
-    </li>
-  </ul>
+    </ul>
+  </div>
 {% endblock %}

@@ -2,34 +2,43 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-	<h1>Tasks <a href="{% url 'manager:task-create' %}" class="btn btn-primary">Create new</a></h1>
+  <div class="container mt-4">
+    <h1 class="text-primary mb-4">
+      Tasks
+      <a href="{% url 'manager:task-create' %}" class="btn btn-success btn-sm ms-3">+ Create new</a>
+    </h1>
 
-  <form action="" method="get" class="d-flex gap-2 mb-3">
-    {% csrf_token %}
-    {{ search_form|crispy }}
-    <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start; margin-top: 5px">🔎</button>
-  </form>
+    <form action="" method="get" class="d-flex gap-2 mb-4">
+      {% csrf_token %}
+      {{ search_form|crispy }}
+      <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start; margin-top: 5px">🔍</button>
+    </form>
 
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      {% for task in task_list %}
+        <div class="col">
+          <div class="card h-100 border-info shadow-sm rounded-3">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-info">
+                  {{ task.name }}
+                </a>
+              </h5>
 
-  {% for task in task_list %}
-  	<ul class="list-group">
-      <li class="list-group-item">
-        <h3>
-          <a href="{% url 'manager:task-detail' pk=task.id %}">{{ task.name }}</a>
-        </h3><br>
-        
-        <h5>
-          {% if task.is_completed %}
-        	  Completed
-          {% else %}
-            Not completed
-          {% endif %} 
-        </h5>
-        
-      </li>
-    </ul>
-  {% empty %}
-    No tasks right now
-  {% endfor %}
-  
+              <p class="card-text">
+                <strong>Status:</strong> 
+                {% if task.is_completed %}
+                  <span class="badge bg-success">Completed</span>
+                {% else %}
+                  <span class="badge bg-warning">Not completed</span>
+                {% endif %}
+              </p>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <div class="text-muted">No tasks right now</div>
+      {% endfor %}
+    </div>
+  </div>
 {% endblock %}

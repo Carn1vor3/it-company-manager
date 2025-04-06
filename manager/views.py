@@ -27,7 +27,7 @@ class PositionListView(LoginRequiredMixin, ListView):
     model = Position
     template_name = "manager/position_list.html"
     context_object_name = "position_list"
-    paginate_by = 5
+    paginate_by = 6
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(PositionListView, self).get_context_data(**kwargs)
@@ -79,7 +79,7 @@ class TaskTypeListView(LoginRequiredMixin, ListView):
     model = TaskType
     template_name = "manager/task_type_list.html"
     context_object_name = "task_type_list"
-    paginate_by = 5
+    paginate_by = 6
 
     def get_context_data(self, *, object_list = ..., **kwargs):
         context = super(TaskTypeListView, self).get_context_data(**kwargs)
@@ -131,7 +131,7 @@ class WorkerListView(LoginRequiredMixin, ListView):
     model = Worker
     template_name = "manager/worker_list.html"
     context_object_name = "worker_list"
-    paginate_by = 5
+    paginate_by = 6
 
     def get_context_data(self, *, object_list = ..., **kwargs):
         context = super(WorkerListView, self).get_context_data(**kwargs)
@@ -183,7 +183,7 @@ class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = "manager/task_list.html"
     context_object_name = "task_list"
-    paginate_by = 5
+    paginate_by = 6
 
     def get_context_data(self, *, object_list = ..., **kwargs):
         context = super(TaskListView, self).get_context_data(**kwargs)
