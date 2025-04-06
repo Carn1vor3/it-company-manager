@@ -6,6 +6,12 @@
     <a href="{% url 'manager:task-update' pk=task_detail.id%}" class="btn btn-primary">Update</a>
     <a href="{% url 'manager:task-delete' pk=task_detail.id%}" class="btn btn-danger">Delete</a>
   </h1><br>
+    {% if user in task_detail.assignees.all %}
+      <a href="{% url 'manager:task-assign-unassign' pk=task_detail.id%}" class="btn btn-danger">Unassign me from this task</a>
+    {% else %}
+      <a href="{% url 'manager:task-assign-unassign' pk=task_detail.id%}" class="btn btn-primary">Assign me to this task</a>
+    {% endif %} 
+  
   <h4>
     Short description: {{ task_detail.description }}
   </h4>

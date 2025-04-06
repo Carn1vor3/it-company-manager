@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, get_object_or_404
+from django.urls import reverse_lazy, reverse
 
 from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm, \
     TaskTypeSearchForm, TaskSearchForm, WorkerSearchForm
@@ -228,3 +229,13 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "manager/task_update.html"
     context_object_name = "task"
     success_url = "/manager/task/"
+
+
+def task_assign_unassign(request:HttpRequest, pk:int):
+    task = get_object_or_404(Task, id=pk)
+    if request.user not in task.assignees.all():
+        task.assignees.add(request.user)
+    else:
+        task.assignees.remove(request.user)
+
+    return HttpResponseRedirect(reverse("manager:task-detail", args=[pk]))
