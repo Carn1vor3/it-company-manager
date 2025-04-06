@@ -1,18 +1,60 @@
 {% extends "base.html" %}
 
 {% block content %}
-	<h1>Worker {{ worker_detail.username }}
-    <a href="{% url 'manager:worker-position-update' pk=worker_detail.id%}" class="btn btn-primary">Update position</a>
-    <a href="{% url 'manager:worker-delete' pk=worker_detail.id%}" class="btn btn-danger">Delete</a></h1>
-  <ul>
-    <li>
-      {{ worker_detail.get_full_name }} 
-    </li>
-    <li>
-      Position: {{ worker_detail.position }}
-    </li>
-    <li>
-      Email: {{ worker_detail.email }}
-    </li>
-  </ul>
+  <div class="container mt-4">
+    <h1 class="text-primary mb-4">
+      Worker {{ worker_detail.username }}
+      <a href="{% url 'manager:worker-position-update' pk=worker_detail.id %}" class="btn btn-primary btn-sm ms-3">Update position</a>
+      <a href="{% url 'manager:worker-delete' pk=worker_detail.id %}" class="btn btn-danger btn-sm ms-2">Delete</a>
+    </h1>
+
+    <div class="row">
+      <div class="col-12 mb-3">
+        <div class="card border-info shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-info">Personal Info</h5>
+            <ul class="list-unstyled mb-0">
+              <li><strong>Full Name:</strong> {{ worker_detail.get_full_name }}</li>
+              <li><strong>Position:</strong> {{ worker_detail.position }}</li>
+              <li><strong>Email:</strong> {{ worker_detail.email }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card border-success shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-success">Tasks - Completed</h5>
+            {% with completed_tasks=worker_detail.task.all %}
+              {% for task in completed_tasks %}
+                {% if task.is_completed %}
+                  <div>- {{ task.name }}</div>
+                {% endif %}
+              {% empty %}
+                <div class="text-muted">No tasks completed yet</div>
+              {% endfor %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <div class="card border-warning shadow-sm rounded-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title text-warning">Tasks - In Progress</h5>
+            {% with in_progress_tasks=worker_detail.task.all %}
+              {% for task in in_progress_tasks %}
+                {% if not task.is_completed %}
+                  <div>- <a href="{% url 'manager:task-detail' pk=task.id%}">{{ task.name }}</a></div>
+                {% endif %}
+              {% empty %}
+                <div class="text-muted">No tasks in progress</div>
+              {% endfor %}
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}
