@@ -34,7 +34,7 @@
         <h4 class="card-title">Working on task</h4>
         <p class="card-text">
           {% for assignee in task_detail.assignees.all %}
-            <a href="{{ assignee.get_absolute_url }}" class="btn btn-info btn-sm text-white me-2">{{ assignee.username }}</a>{% if not forloop.last %}, {% endif %}
+            <a href="{{ assignee.get_absolute_url }}" class="btn btn-info btn-sm text-white me-2">{{ assignee.username }}</a>{% if not forloop.last %} {% endif %}
           {% endfor %}
         </p>
 

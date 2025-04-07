@@ -46,6 +46,9 @@ class Task(models.Model):
     assignees = models.ManyToManyField(Worker, related_name="task")
     priority = models.CharField(choices=PRIORITY_CHOICES, max_length=10, default="Low")
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         assignees_names = ", ".join(worker.username for worker in self.assignees.all())
         return (f"Task: ({self.name}),"
