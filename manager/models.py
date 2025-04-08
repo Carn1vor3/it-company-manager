@@ -27,6 +27,9 @@ class Worker(AbstractUser):
     def get_absolute_url(self):
         return reverse("manager:worker-detail", kwargs={"pk": self.pk})
 
+    def __str__(self):
+        return f"{self.username}, {self.email}"
+
 
 class Task(models.Model):
     PRIORITY_CHOICES = (
