@@ -1,44 +1,76 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
 {% load crispy_forms_filters %}
+{% load static %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h1 class="text-primary mb-4">
-      Tasks
-      <a href="{% url 'manager:task-create' %}" class="btn btn-success btn-sm ms-3">+ Create new</a>
-    </h1>
 
-    <form action="" method="get" class="d-flex gap-2 mb-4">
-      {% csrf_token %}
-      {{ search_form|crispy }}
-      <button type="submit" class="btn btn-outline-primary" style="align-self: flex-start; margin-top: 5px">🔍</button>
-    </form>
+    <main>
 
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      {% for task in task_list %}
-        <div class="col">
-          <div class="card h-100 border-info shadow-sm rounded-3">
-            <div class="card-body">
-              <h5 class="card-title">
-                <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-info">
-                  {{ task.name }}
-                </a>
-              </h5>
-
-              <p class="card-text">
-                <strong>Status:</strong> 
-                {% if task.is_completed %}
-                  <span class="badge bg-success">Completed</span>
-                {% else %}
-                  <span class="badge bg-warning">Not completed</span>
-                {% endif %}
-              </p>
+        <!-- Hero -->
+        <div class="section-header pb-6 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+                        <h1 class="display-3 mb-4">Tasks
+                          <a href="{% url 'manager:task-create' %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover">
+                            + Create new task
+                          </a>
+                        </h1>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div class="container mt-4">
+          <div class="container d-flex justify-content-center">
+            <form method="get" action="" class="w-100" style="max-width: 600px;">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                {{ search_form }}
+                <button class="btn btn-outline-secondary" type="submit" id="search-icon">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <br>
+          <br>
+          <br>
+
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for task in task_list %}
+                <div class="col">
+                    <div class="card h-100 border border-primary shadow-lg rounded-4 bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-primary">
+                                    {{ task.name }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">Click to view details</p>
+
+                            <p class="card-text">
+                                <strong>Status:</strong>
+                                {% if task.is_completed %}
+                                    <span class="badge btn-success text-white">Completed</span>
+                                {% else %}
+                                    <span class="badge bg-warning">Not completed</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center p-4 border border-primary rounded-3 shadow-sm bg-light">
+                    <p class="lead text-primary">No tasks right now</p>
+                </div>
+            {% endfor %}
           </div>
         </div>
-      {% empty %}
-        <div class="text-muted">No tasks right now</div>
-      {% endfor %}
-    </div>
-  </div>
+        <div class="container-fluid bg-white py-8">
+        </div>
+
+    </main>
+
 {% endblock %}

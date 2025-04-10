@@ -1,0 +1,34 @@
+{% load static %}
+
+<footer class="footer pb-5 pt-5 bg-dark text-white mt-auto">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-6 mb-3">
+        <h5 class="mb-3">About the Project</h5>
+        <p>
+          This web application was built for task management within a team.
+          It allows you to assign workers, set deadlines, and track task priorities effectively.
+        </p>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <h5 class="mb-3">About the Developer</h5>
+        <p>
+          Hi! I'm Nazarii, a backend developer.
+          This project is a part of my portfolio, developed using Django.
+        </p>
+        <p>
+          Contact me: nazar131188@gmail.com
+        </p>
+      </div>
+
+    </div>
+
+    <hr class="bg-light my-4">
+
+    <div class="text-center">
+      <p class="mb-0">© {{ now|date:"Y" }} All rights reserved.</p>
+    </div>
+  </div>
+</footer>

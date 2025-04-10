@@ -1,5 +1,7 @@
-{% extends "base.html" %}
+{% extends "layouts/base.html" %}
+{% load static %}
 
+{% block header %}{% endblock header %}
 {% block content %}
 	<h1>You are successfully logged out</h1><br>
   <h3><a href="{% url 'login' %}" class="btn btn-primary">Click here to login again</a></h3>
