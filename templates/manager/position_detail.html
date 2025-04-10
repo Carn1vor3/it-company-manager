@@ -8,12 +8,28 @@
   
   <h3>
     {% if position_detail.worker.all %}
-      
-      {% for worker in position_detail.worker.all %}
-      {{ worker.get_full_name }}<br>
-      {% endfor %}
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for worker in position_detail.worker.all %}
+          <div class="col">
+            <div class="card h-100 border-info shadow-sm rounded-3">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <a href="{{ worker.get_absolute_url }}" class="text-decoration-none text-info">
+                    {{ worker.username }}
+                  </a>
+                </h5>
+                <p class="card-text">
+                  <strong>Position:</strong> {{ worker.position }}
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     {% else %}
-      No workers with this position
-    {% endif %} 
+      <div class="alert alert-info text-center" role="alert">
+        No workers right now
+      </div>
+    {% endif %}
   </h3>
 {% endblock %}
