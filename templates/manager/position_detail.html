@@ -7,7 +7,10 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-8 text-center">
-                    <h1 class="display-3 mb-4">Workers with {{ position_detail.name }} position</h1>
+                    <h1 class="display-3 mb-4">Workers with {{ position_detail.name }} position
+                      <a href="{% url 'manager:position-update' pk=position_detail.id %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover ms-2">Update</a>
+                      <a href="{% url 'manager:position-delete' pk=position_detail.id %}" class="btn bg-white text-danger fw-bold shadow-sm border border-light shadow-hover ms-2">Delete</a>
+                    </h1>
                     <p class="lead mb-5"></p>
                 </div>
             </div>
@@ -17,8 +20,7 @@
     <div class="container mt-4">
         <!-- Buttons for Update and Delete -->
         <div class="d-flex justify-content-between mb-4">
-            <a href="{% url 'manager:position-update' pk=position_detail.id %}" class="btn btn-primary btn-lg">Update Position</a>
-            <a href="{% url 'manager:position-delete' pk=position_detail.id %}" class="btn btn-danger btn-lg">Delete Position</a>
+            
         </div>
 
         <h3>

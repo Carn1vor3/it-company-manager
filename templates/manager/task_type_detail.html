@@ -1,24 +1,62 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block content %}
-  <div class="container mt-4">
-    <h1 class="text-primary">
-      Additional Info About {{ task_type_detail.name }}
-      <a href="{% url 'manager:task-type-update' pk=task_type_detail.id %}" class="btn btn-warning btn-sm ms-3">Update</a>
-      <a href="{% url 'manager:task-type-delete' pk=task_type_detail.id %}" class="btn btn-danger btn-sm ms-3">Delete</a>
-    </h1>
 
-    <h2 class="mt-4">Tasks with "{{ task_type_detail.name }}" type of task:</h2>
-    <ul class="list-group mt-3">
-      {% for task in task_type_detail.task.all %}
-        <li class="list-group-item">
-          <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-primary">
-            {{ task.name }}
-          </a>
-        </li>
-      {% empty %}
-        <li class="list-group-item text-muted">No tasks associated with this type yet.</li>
-      {% endfor %}
-    </ul>
-  </div>
+  <main>
+
+    <!-- Hero -->
+    <div class="section-header pb-6 bg-primary text-white">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-md-10 text-center">
+            <h1 class="display-3 mb-4">
+              Additional info about {{ task_type_detail.name }} type
+              <a href="{% url 'manager:task-type-update' pk=task_type_detail.id %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover ms-2">
+                Update
+              </a>
+              <a href="{% url 'manager:task-type-delete' pk=task_type_detail.id %}" class="btn bg-white text-danger fw-bold shadow-sm border border-light shadow-hover ms-2">
+                Delete
+              </a>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <h2 class="text-primary mb-4">Tasks with "{{ task_type_detail.name }}" type of task:</h2>
+
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for task in task_type_detail.task.all %}
+          <div class="col">
+            <div class="card h-100 border border-primary shadow-lg rounded-4 bg-light" style="min-height: 300px;">
+              <div class="card-body d-flex flex-column justify-content-between">
+                <div>
+                  <h5 class="card-title text-primary">
+                    <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-primary fw-semibold">
+                      {{ task.name }}
+                    </a>
+                  </h5>
+                  <p class="card-text text-muted mt-2">Click to view details</p>
+                </div>
+                <div class="mt-auto">
+                  <a href="{% url 'manager:task-detail' pk=task.id %}" class="btn btn-outline-primary btn-sm mt-3">View Task</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% empty %}
+          <div class="text-center p-4 border border-primary rounded-3 shadow-sm bg-light">
+            <p class="lead text-primary">No tasks associated with this type yet.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="container-fluid bg-white py-8">
+    </div>
+
+  </main>
+
 {% endblock %}
