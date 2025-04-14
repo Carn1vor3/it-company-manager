@@ -1,16 +1,14 @@
 {% load static %}
 
 <header class="header-global">
-
     {% if request.path == "/landing-freelancer/" or request.path == "/blank/" %}
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light navbar-theme-secondary">
     {% else %}
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-dark navbar-theme-secondary">
-    {% endif %}  
+    {% endif %}
       <div class="container position-relative">
           <a class="navbar-brand me-lg-5" href="/manager/">
-              <img class="navbar-brand-dark" src="{% static 'assets/img/brand/light.svg' %}" alt="Logo light">
-              <img class="navbar-brand-light" src="{% static 'assets/img/brand/dark.svg' %}" alt="Logo dark">
+              <span class="fas fa-home" style="font-size: 2rem; color: #ffffff;"></span>
           </a>
           <div class="navbar-collapse collapse me-auto" id="navbar_global">
               <div class="navbar-collapse-header">
@@ -54,7 +52,6 @@
                                   <h6 class="d-block mb-3 text-primary">User</h6>
                                   <ul class="list-style-none mb-4">
                                     {% if request.user.is_authenticated %}
-                                        
                                         <li class="mb-2 megamenu-item">
                                             <a class="megamenu-link" href="{% url 'logout' %}">Logout</a>
                                         </li>
@@ -68,7 +65,7 @@
                           </div>
                       </div>
                   </li>
-                  
+
                   <li class="nav-item dropdown">
                       <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="supportDropdown" aria-expanded="false">
                           Support
@@ -90,13 +87,13 @@
                   </li>
               </ul>
           </div>
-          <div class="d-flex align-items-center">              
+          <div class="d-flex align-items-center">
             {% if request.user.is_authenticated %}
                 <a href="{% url 'logout' %}"
-                   class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-out-alt me-2"></span> Logout</a>            
+                   class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-out-alt me-2"></span> Logout</a>
             {% else %}
                 <a href="{% url 'login' %}"
-                    class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Sign IN</a>            
+                    class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Sign IN</a>
             {% endif %}
               <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>

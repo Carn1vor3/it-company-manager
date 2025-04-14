@@ -5,8 +5,7 @@
 
 <main>
 
-
-  <!-- Hero -->
+  <!-- Hero Section -->
   <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
     <div class="container">
       <div class="row">
@@ -20,55 +19,97 @@
                 fill="currentColor"></path>
             </svg>
           </div>
-          <h1 class="fw-bolder display-2">
-            Manager for IT-company
-          </h1>
-          <h2 class="lead fw-normal text-muted mb-4 px-lg-10">
+          <h1 class="fw-bolder display-2" style="font-size: 3rem;">Manager for IT-company</h1>
+          <h2 class="lead fw-normal text-muted mb-4 px-lg-10" style="font-size: 1.5rem;">
             Portfolio project
           </h2>
-          </div>
         </div>
       </div>
+    </div>
     <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="fill-white"
         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
         <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
       </svg></figure>
   </section>
 
+   <!-- Stats Section -->
+  <section class="section section-lg py-10 bg-light">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-3 mb-4">
+        <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+          <span class="fas fa-briefcase" style="font-size: 2rem;"></span>
+        </div>
+        <h3 class="fw-bolder" style="font-size: 2rem;">{{ positions }}</h3>
+        <p class="text-muted" style="font-size: 1.1rem;">Available Positions</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+          <span class="fas fa-tasks" style="font-size: 2rem;"></span>
+        </div>
+        <h3 class="fw-bolder" style="font-size: 2rem;">{{ tasks }}</h3>
+        <p class="text-muted" style="font-size: 1.1rem;">Tasks</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+          <span class="fas fa-cogs" style="font-size: 2rem;"></span>
+        </div>
+        <h3 class="fw-bolder" style="font-size: 2rem;">{{ task_type }}</h3>
+        <p class="text-muted" style="font-size: 1.1rem;">Types of Tasks</p>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+          <span class="fas fa-users" style="font-size: 2rem;"></span>
+        </div>
+        <h3 class="fw-bolder" style="font-size: 2rem;">{{ workers }}</h3>
+        <p class="text-muted" style="font-size: 1.1rem;">Workers</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-  <section class="section section-lg">
-    <div class="container">
-      <div class="row justify-content-center mb-5 mb-lg-6">
-        <div class="col-6 col-md-3 text-center mb-4">
-          <div class="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-            <span class="fas fa-puzzle-piece text-tertiary"></span>
+
+  <!-- Features -->
+  <section class="section section-lg py-10 bg-white">
+    <div class="container text-center">
+      <h3 class="fw-bolder" style="font-size: 2.5rem; color: #333;">Key Features</h3>
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-4 mb-5">
+          <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+            <span class="fas fa-users-cog" style="font-size: 2rem;"></span>
           </div>
-          <h3 class="fw-bolder">{{ positions }}</h3>
-          <p class="text-gray">Available positions</p>
+          <h4 class="fw-bold" style="font-size: 1.6rem;">Manage Employee Roles</h4>
+          <p class="text-muted" style="font-size: 1.1rem;">Assign and track roles and responsibilities across teams</p>
         </div>
-        <div class="col-6 col-md-3 text-center mb-4">
-          <div class="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-            <span class="fas fa-pager text-tertiary"></span>
+        <div class="col-md-4 mb-5">
+          <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+            <span class="fas fa-tasks" style="font-size: 2rem;"></span>
           </div>
-          <h3 class="fw-bolder">{{ tasks }}</h3>
-          <p class="text-gray">Tasks</p>
+          <h4 class="fw-bold" style="font-size: 1.6rem;">Task Assignment</h4>
+          <p class="text-muted" style="font-size: 1.1rem;">Assign tasks to workers with different priorities</p>
         </div>
-        <div class="col-6 col-md-3 text-center">
-          <div class="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-            <span class="fab fa-sass text-tertiary"></span>
+        <div class="col-md-4 mb-5">
+          <div class="icon icon-shape icon-xl bg-primary text-white shadow-lg rounded-circle mb-4">
+            <span class="fas fa-calendar-alt" style="font-size: 2rem;"></span>
           </div>
-          <h3 class="fw-bolder">{{ task_type }}</h3>
-          <p class="text-gray">Types of tasks</p>
-        </div>
-        <div class="col-6 col-md-3 text-center">
-          <div class="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-            <span class="fab fa-js-square text-tertiary"></span>
-          </div>
-          <h3 class="fw-bolder">{{ workers }}</h3>
-          <p class="text-gray">Workers</p>
+          <h4 class="fw-bold" style="font-size: 1.6rem;">Track Deadlines</h4>
+          <p class="text-muted" style="font-size: 1.1rem;">Set and track task deadlines to ensure timely delivery</p>
         </div>
       </div>
     </div>
+  </section>
+
+ 
+  <!-- About Project -->
+  <section class="section section-lg py-10 bg-light">
+    <div class="container text-center">
+      <h2 class="fw-bolder" style="font-size: 2.5rem; color: #333;">About the Project</h2>
+      <p class="text-muted mb-4" style="font-size: 1.2rem;">
+        This project is a web-based system for managing tasks and employees within an IT company. The platform enables the assignment and tracking of tasks, prioritization of work, and efficient staff management based on positions and task types. It aims to streamline operations and improve productivity within a company.
+      </p>
+    </div>
+  </section>
+
 </main>
 
-{% endblock content %}
+{% endblock %}
