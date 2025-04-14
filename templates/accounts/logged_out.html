@@ -16,18 +16,23 @@
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-300 p-4 p-lg-5 w-100 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">Password Changed</h1>
+                                <h1 class="mb-0 h3">You have been successfully logged out</h1>
                             </div>
-                            <span>Your password has been changed successfully. <br />
-                              <a href="/">Go to home</a>
-                            </span>
+                            <p class="text-center text-muted mb-4">
+                                You have been logged out of your account. To log in again, click the button below.
+                            </p>
+                            <div class="d-grid">
+                                <a href="{% url 'login' %}" class="btn btn-primary">Log in again</a>
+                                <a href="{% url 'manager:home' %}" class="btn btn-primary mt-3">Go to home page</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
- {% endblock content %}
+{% endblock content %}
 
- {% block footer %}{% endblock footer %}
+{% block footer %}{% endblock footer %}

@@ -25,7 +25,7 @@ from manager.views import (
     TaskCreateView,
     TaskUpdateView,
     TaskDeleteView,
-    task_assign_unassign,
+    task_assign_unassign, logout_view, UserLoginView, logged_out_view,
 
 )
 
@@ -55,6 +55,7 @@ urlpatterns = [
     path("task/<int:pk>/update/", TaskUpdateView.as_view(), name="task-update"),
     path("task/<int:pk>/delete/", TaskDeleteView.as_view(), name="task-delete"),
     path("task/<int:pk>/assign_unassign/", task_assign_unassign, name="task-assign-unassign"),
+    path('logged_out/', logged_out_view, name='logged_out'),
 ]
 
 

@@ -1,10 +1,51 @@
 {% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
 
 {% block content %}
-	<h1>Create new worker</h1>
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="create">
-  </form>
+
+    <main>
+
+        <!-- Hero -->
+        <div class="section-header pb-6 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+                        <h1 class="display-3 mb-4">
+                          Create new worker
+                        </h1>
+                        <p class="lead mb-4">
+                          Please provide the necessary details about the new worker to complete their profile.
+                        </p>
+                        <div class="row justify-content-center">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+            <h2 class="text-center text-primary mb-4">Worker Information Form</h2>
+            <p class="text-center text-muted mb-4">Please fill out the form below to add a new worker to the system. All fields are required.</p>
+            
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="card shadow-sm border-0 rounded-4 mb-4">
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input type="submit" value="Create Worker" class="btn btn-primary btn-lg shadow-sm w-50">
+                </div>
+            </form>
+
+        </div>
+
+        <div class="container-fluid bg-white py-10">
+        </div>
+
+    </main>
+
 {% endblock %}

@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UsernameField, AuthenticationForm
 from django.forms import CheckboxSelectMultiple
 from django.forms.fields import MultipleChoiceField
+from django.utils.translation.trans_null import gettext_lazy
 
 from manager.models import Worker, Position, Task
 
@@ -82,3 +83,11 @@ class WorkerSearchForm(forms.Form):
         label="",
         widget=forms.TextInput(attrs={'placeholder': 'Search', 'class': 'form-control'}),
     )
+
+class UserLoginForm(AuthenticationForm):
+  username = UsernameField(widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Username"}))
+  password = forms.CharField(
+      label=gettext_lazy("Password"),
+      strip=False,
+      widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Password"}),
+  )

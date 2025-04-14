@@ -1,12 +1,14 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
 
 from manager.forms import WorkerCreationForm, WorkerPositionUpdateForm, TaskForm, PositionSearchForm, \
-    TaskTypeSearchForm, TaskSearchForm, WorkerSearchForm
+    TaskTypeSearchForm, TaskSearchForm, WorkerSearchForm, UserLoginForm
 from manager.models import Worker, Position, TaskType, Task
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.contrib.auth import logout
 
 
 def index(request: HttpRequest) -> HttpResponse:
@@ -238,3 +240,15 @@ def task_assign_unassign(request:HttpRequest, pk:int):
         task.assignees.remove(request.user)
 
     return HttpResponseRedirect(reverse("manager:task-detail", args=[pk]))
+
+
+class UserLoginView(LoginView):
+  template_name = 'accounts/sign-in.html'
+  form_class = UserLoginForm
+
+def logout_view(request):
+  logout(request)
+  return redirect("manager:logged_out")
+
+def logged_out_view(request):
+    return render(request, 'accounts/logged_out.html')
