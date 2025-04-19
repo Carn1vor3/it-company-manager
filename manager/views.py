@@ -58,7 +58,7 @@ class PositionCreateView(LoginRequiredMixin, CreateView):
     template_name = "manager/position_create.html"
     context_object_name = "position_create"
     fields = "__all__"
-    success_url = "/manager/position/"
+    success_url = "/position/"
 
 
 class PositionUpdateView(LoginRequiredMixin, UpdateView):
@@ -66,14 +66,14 @@ class PositionUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "manager/position_update.html"
     context_object_name = "position"
     fields = "__all__"
-    success_url = "/manager/position/"
+    success_url = "/position/"
 
 
 class PositionDeleteView(LoginRequiredMixin, DeleteView):
     model = Position
     template_name = "manager/position_confirmation_delete.html"
     context_object_name = "position"
-    success_url = "/manager/position/"
+    success_url = "/position/"
 
 
 class TaskTypeListView(LoginRequiredMixin, ListView):
@@ -104,7 +104,7 @@ class TaskTypeCreateView(LoginRequiredMixin, CreateView):
     template_name = "manager/task_type_create.html"
     context_object_name = "task_type_create"
     fields = "__all__"
-    success_url = "/manager/tasktype/"
+    success_url = "/tasktype/"
 
 
 class TaskTypeDetailView(LoginRequiredMixin, DetailView):
@@ -118,14 +118,14 @@ class TaskTypeUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "manager/task_type_update.html"
     context_object_name = "task_type"
     fields = "__all__"
-    success_url = "/manager/tasktype/"
+    success_url = "/tasktype/"
 
 
 class TaskTypeDeleteView(LoginRequiredMixin, DeleteView):
     model = TaskType
     template_name = "manager/task_type_confirmation_delete.html"
     context_object_name = "task_type"
-    success_url = "/manager/tasktype/"
+    success_url = "/tasktype/"
 
 
 class WorkerListView(LoginRequiredMixin, ListView):
@@ -162,14 +162,14 @@ class WorkerCreateView(LoginRequiredMixin, CreateView):
     template_name = "manager/worker_create.html"
     context_object_name = "worker_create"
     form_class = WorkerCreationForm
-    success_url = "/manager/worker/"
+    success_url = "/worker/"
 
 
 class WorkerDeleteView(LoginRequiredMixin, DeleteView):
     model = Worker
     template_name = "manager/worker_confirmation_delete.html"
     context_object_name = "worker"
-    success_url = "/manager/worker/"
+    success_url = "/worker/"
 
 
 class WorkerPositionUpdateView(LoginRequiredMixin, UpdateView):
@@ -177,7 +177,7 @@ class WorkerPositionUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "manager/worker_position_update.html"
     form_class = WorkerPositionUpdateForm
     context_object_name = "worker_position_update"
-    success_url = "/manager/worker/"
+    success_url = "/worker/"
 
 
 class TaskListView(LoginRequiredMixin, ListView):
@@ -213,14 +213,14 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     form_class = TaskForm
     template_name = "manager/task_create.html"
     context_object_name = "task_create"
-    success_url = "/manager/task/"
+    success_url = "/task/"
 
 
 class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = "manager/task_confirmation_delete.html"
     context_object_name = "task"
-    success_url = "/manager/task/"
+    success_url = "/task/"
 
 
 
@@ -229,7 +229,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     form_class = TaskForm
     template_name = "manager/task_update.html"
     context_object_name = "task"
-    success_url = "/manager/task/"
+    success_url = "/task/"
 
 
 def task_assign_unassign(request:HttpRequest, pk:int):

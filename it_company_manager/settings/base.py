@@ -13,25 +13,15 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "django-insecure-myorpnu7e+nw^6^3c!ds-22l8wo02#avur8cvdea6godre_16h")
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
-if not SECRET_KEY:
-    raise ValueError("SECRET_KEY not set in environment variables")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
-
-ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1"
-]
 
 
 # Application definition
@@ -43,8 +33,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
     'crispy_forms',
     'crispy_bootstrap5',
+
+    # user apps
     "manager",
 ]
 
@@ -80,15 +73,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "it_company_manager.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
 
 
 # Password validation
