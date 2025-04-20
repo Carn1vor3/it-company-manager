@@ -1,0 +1,58 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <div class="section-header pb-6 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <h1 class="display-3 mb-4">Workers with {{ position_detail.name }} position
+                      <a href="{% url 'manager:position-update' pk=position_detail.id %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover ms-2">Update</a>
+                      <a href="{% url 'manager:position-delete' pk=position_detail.id %}" class="btn bg-white text-danger fw-bold shadow-sm border border-light shadow-hover ms-2">Delete</a>
+                    </h1>
+                    <p class="lead mb-5"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <!-- Buttons for Update and Delete -->
+        <div class="d-flex justify-content-between mb-4">
+            
+        </div>
+
+        <h3>
+            {% if position_detail.worker.all %}
+                <!-- Cards for Workers -->
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    {% for worker in position_detail.worker.all %}
+                        <div class="col">
+                            <div class="card h-100 border border-primary shadow-lg rounded-4 bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">
+                                        <a href="{{ worker.get_absolute_url }}" class="text-decoration-none text-primary">
+                                            {{ worker.username }}
+                                        </a>
+                                    </h5>
+                                    <p class="card-text text-muted">
+                                        <strong>Position:</strong> {{ worker.position }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="text-center p-4 border border-primary rounded-3 shadow-sm bg-light">
+                  <p class="lead text-primary">No workers with this position</p>
+                </div>
+            {% endif %}
+        </h3>
+    </div>
+  
+    <div class="container-fluid bg-white py-10">
+    </div>
+
+{% endblock %}

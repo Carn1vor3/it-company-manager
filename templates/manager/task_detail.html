@@ -1,0 +1,96 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+
+    <!-- Hero Section -->
+    <div class="section-header pb-6 bg-primary text-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8 text-center">
+                    <h1 class="display-3 mb-4">Information about task: {{ task_detail.name }}
+                      <a href="{% url 'manager:task-update' pk=task_detail.id %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover ms-2">Update</a>
+                      <a href="{% url 'manager:task-delete' pk=task_detail.id %}" class="btn bg-white text-danger fw-bold shadow-sm border border-light shadow-hover ms-2">Delete</a>
+                    </h1>
+                    <p class="lead mb-5"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <!-- Buttons for Update and Delete -->
+        <div class="d-flex justify-content-between mb-4">
+        </div>
+
+        <!-- Card for Task Details -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card h-100 border border-primary shadow-lg rounded-4 bg-light p-4">
+                    <div class="card-body">
+                        <!-- Task Name -->
+                        <h5 class="card-title text-primary fs-2 mb-3">{{ task_detail.name }}</h5>
+
+                        <!-- Task Description -->
+                        <h6 class="text-muted mb-2">Description</h6>
+                        <p class="card-text mb-4">{{ task_detail.description }}</p>
+
+                        <!-- Priority -->
+                        <h6 class="text-muted mb-2">Priority</h6>
+                        <p class="card-text mb-4">
+                            <span class="badge 
+                                        {% if task_detail.priority == 'Critical' %} bg-dark text-white 
+                                           {% elif task_detail.priority == 'High' %} bg-danger 
+                                           {% elif task_detail.priority == 'Medium' %} bg-warning 
+                                           {% else %} bg-success {% endif %}">
+                                {{ task_detail.priority }}
+                            </span>
+                        </p>
+
+                        <!-- Deadline -->
+                        <h6 class="text-muted mb-2">Deadline</h6>
+                        <p class="card-text mb-4">{{ task_detail.deadline }}</p>
+
+                        <!-- Task Type -->
+                        <h6 class="text-muted mb-2">Type of the Task</h6>
+                        <p class="card-text mb-4">{{ task_detail.task_type }}</p>
+
+                        <!-- Status -->
+                        <h6 class="text-muted mb-2">Status</h6>
+                        <p class="card-text">
+                            {% if task_detail.is_completed %}
+                                <span class="badge bg-success">Completed</span>
+                            {% else %}
+                                <span class="badge bg-warning">Not completed</span>
+                            {% endif %}
+                        </p>
+
+                        <!-- Working on Task -->
+                        <h6 class="text-muted mb-2">Working on this task</h6>
+                        <p class="card-text mb-4">
+                            {% for assignee in task_detail.assignees.all %}
+                                <a href="{{ assignee.get_absolute_url }}" 
+                                   class="btn btn-sm text-white me-2 
+                                          {% if assignee == user %}btn-warning{% else %}btn-secondary{% endif %}">
+                                    {{ assignee.username }}
+                                </a>
+                            {% endfor %}
+                        </p>
+
+                        <!-- Assign/Unassign Button -->
+                        <div class="d-flex justify-content-center mt-4">
+                            {% if user in task_detail.assignees.all %}
+                                <a href="{% url 'manager:task-assign-unassign' pk=task_detail.id %}" class="btn btn-danger btn-lg">Unassign me from this task</a>
+                            {% else %}
+                                <a href="{% url 'manager:task-assign-unassign' pk=task_detail.id %}" class="btn btn-primary btn-lg">Assign me to this task</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-white py-10">
+    </div>
+
+{% endblock %}

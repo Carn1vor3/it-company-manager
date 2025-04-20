@@ -1,0 +1,86 @@
+{% extends "layouts/base.html" %}
+
+{% block content %}
+<main>
+
+  <!-- Hero Section -->
+  <div class="section-header pb-6 bg-dark text-white">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 text-center">
+          <h1 class="display-3 mb-4">Worker Details</h1>
+          <p class="lead">Complete overview of worker's tasks and personal info.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <!-- Profile Info Block -->
+    <div class="profile-info-block bg-white shadow-lg rounded-4 p-5 border-0" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+
+      <!-- Header Section -->
+      <div class="profile-header d-flex justify-content-between align-items-center mb-5">
+        <div>
+          <h2 class="text-dark mb-2">{{ worker_detail.username }}</h2>
+          <p class="text-muted mb-1">{{ worker_detail.position }}</p>
+          <p class="text-muted">{{ worker_detail.email }}</p>
+        </div>
+        <div class="btn-group">
+          <a href="{% url 'manager:worker-position-update' pk=worker_detail.id %}" class="btn btn-outline-primary btn-sm">Update Position</a>
+          <a href="{% url 'manager:worker-delete' pk=worker_detail.id %}" class="btn btn-outline-danger btn-sm ms-2">Delete</a>
+        </div>
+      </div>
+
+      <!-- Personal Info Section -->
+      <div class="info-section mb-5">
+        <h5 class="text-info mb-3">Personal Information</h5>
+        <ul class="list-unstyled">
+          <li><strong>Full Name:</strong> {{ worker_detail.get_full_name }}</li>
+          <li><strong>Position:</strong> {{ worker_detail.position }}</li>
+          <li><strong>Email:</strong> {{ worker_detail.email }}</li>
+        </ul>
+      </div>
+
+      <!-- Completed Tasks Section -->
+      <div class="info-section mb-5">
+        <h5 class="text-success mb-3">Completed Tasks</h5>
+        {% with completed_tasks=worker_detail.task.all %}
+          {% for task in completed_tasks %}
+            {% if task.is_completed %}
+              <div class="task-item mb-3 d-flex align-items-center">
+                <i class="fas fa-check-circle text-success me-3"></i>
+                <span class="text-dark">{{ task.name }}</span>
+              </div>
+            {% endif %}
+          {% empty %}
+            <div class="text-muted">No completed tasks yet</div>
+          {% endfor %}
+        {% endwith %}
+      </div>
+
+      <!-- Tasks In Progress Section -->
+      <div class="info-section">
+        <h5 class="text-warning mb-3">Tasks In Progress</h5>
+        {% with in_progress_tasks=worker_detail.task.all %}
+          {% for task in in_progress_tasks %}
+            {% if not task.is_completed %}
+              <div class="task-item mb-3 d-flex align-items-center">
+                <i class="fas fa-spinner text-warning me-3"></i>
+                <a href="{% url 'manager:task-detail' pk=task.id %}" class="text-decoration-none text-warning">{{ task.name }}</a>
+              </div>
+            {% endif %}
+          {% empty %}
+            <div class="text-muted">No tasks in progress</div>
+          {% endfor %}
+        {% endwith %}
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="container-fluid bg-light py-8"></div>
+
+</main>
+{% endblock %}

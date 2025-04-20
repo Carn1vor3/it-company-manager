@@ -1,0 +1,46 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+
+{% block content %}
+
+    <main>
+
+        <!-- Hero -->
+        <div class="section-header pb-6 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+                        <h1 class="display-3 mb-4">
+                          Update type "{{ task_type.name }}"
+                        </h1>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+
+
+
+
+            <br>
+            <br>
+            <br>
+          <h1>Please provide new name for this type of task</h1>
+          <form action="" method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Update" class="btn btn-primary">
+          </form>
+
+       <div class="container-fluid bg-white py-10">
+
+       </div>
+
+    </main>
+
+{% endblock %}

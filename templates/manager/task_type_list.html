@@ -1,0 +1,67 @@
+{% extends "layouts/base.html" %}
+{% load crispy_forms_filters %}
+{% load static %}
+
+{% block content %}
+
+    <main>
+
+        <!-- Hero -->
+        <div class="section-header pb-6 bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-8 text-center">
+                        <h1 class="display-3 mb-4">Types of Tasks
+                          <a href="{% url 'manager:task-type-create' %}" class="btn bg-white text-primary fw-bold shadow-sm border border-light shadow-hover">
+                            + Create new
+                          </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-4">
+          <div class="container d-flex justify-content-center">
+            <form method="get" action="" class="w-100" style="max-width: 600px;">
+              {% csrf_token %}
+              <div class="input-group mb-3">
+                {{ search_form }}
+                <button class="btn btn-outline-secondary" type="submit" id="search-icon">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <br>
+          <br>
+          <br>
+
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for task_type in task_type_list %}
+                <div class="col">
+                    <div class="card h-100 border border-primary shadow-lg rounded-4 bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title text-primary">
+                                <a href="{% url 'manager:task-type-detail' pk=task_type.id %}" class="text-decoration-none text-primary">
+                                    {{ task_type.name }}
+                                </a>
+                            </h5>
+                            <p class="card-text text-muted">Click to view details</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center p-4 border border-primary rounded-3 shadow-sm bg-light">
+                    <p class="lead text-primary">No task types available.</p>
+                </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="container-fluid bg-white py-10">
+        </div>
+
+    </main>
+
+{% endblock %}
