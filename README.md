@@ -1,8 +1,12 @@
 # 🧠 Task Manager
 
 **Task Manager** is a Django-based web application designed to manage tasks and user assignments within an organization. It allows administrators and team members to create tasks, assign them to workers, set deadlines and priorities, and track task completion.
+## Link to the site
+
+https://it-company-manager.onrender.com
 
 ---
+
 
 ## 🚀 Features
 
@@ -130,3 +134,5 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 ## 👤 ` Author` 
 Developed by Nazarii Khalimonov
 https://github.com/Carn1vor3
+
+
